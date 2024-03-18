@@ -5,9 +5,7 @@ import plotly.express as px
 
 
 # Made by: Muhammad Adhim Mulia
-# Student ID: 22220302
 # Email: adhimmuliam@gmail.com
-# Version: Beta.0.1 (Last Updated: 22 February 2022)
 
 # UI Version. How to run:
 # In the terminal: "streamlit run main/explicit_and_implicit_with_UI.py"
@@ -44,6 +42,13 @@ class Simres:
         self.choice = st.selectbox('Menu', menu)
 
     def home(self):
+        """
+        Function to handle the homepage.
+
+        Returns
+        -------
+
+        """
         if self.choice == 'Explicit' and st.button('Run'):
             result = self.explicit()
             st.dataframe(result)
@@ -70,6 +75,13 @@ class Simres:
             st.success('Success')
 
     def explicit(self):
+        """
+        Function to handle explicit calculation.
+
+        Returns
+        -------
+
+        """
         self.matrix = np.zeros((self.nday + 1, self.x), dtype=float)
         self.beta = (0.00026368 * self.k / (self.porosity * self.ct * self.miu)) * (self.dt / (self.dx ** 2))
         self.matrix[0, :] = self.pinit
@@ -101,6 +113,12 @@ class Simres:
         return df_explicit
 
     def implicit(self):
+        """
+        Function to handle implicit calculation
+        Returns
+        -------
+
+        """
         self.beta = (0.00026368 * self.k / (self.porosity * self.ct * self.miu)) * (self.dt / (self.dx ** 2))
         value_of_mid_diagonal = (-1) * (2 * self.beta + 1)
         value_of_above_diagonal = self.beta
@@ -180,6 +198,18 @@ class Simres:
         return np.array(matrix)
 
     def plot(self, df, graph_title):
+        """
+        Function to plot the result of the simulation.
+
+        Parameters
+        ----------
+        df
+        graph_title
+
+        Returns
+        -------
+
+        """
         fig = px.line(df, title=graph_title, labels={'index': 'Days', 'value': 'Pressure', 'variable': 'Blocks'})
 
         return fig
