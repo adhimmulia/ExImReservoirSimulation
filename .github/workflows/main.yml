@@ -1,8 +1,9 @@
 name: Publish Python 🐍 distribution 📦 to TestPyPI
 
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+      - '*'
 
 jobs:
   build:
@@ -31,8 +32,7 @@ jobs:
 
   publish-to-testpypi:
     name: Publish Python 🐍 distribution 📦 to TestPyPI
-    needs:
-    - build
+    if: startsWith(github.ref, 'refs/tags/')  # Only trigger on tag pushes
     runs-on: ubuntu-latest
 
     environment:
