@@ -102,6 +102,20 @@ class Simres:
 
     def create_tridiagonal_matrix(self, size_of_a_matrix, value_for_diagonal, value_for_above_diagonal,
                                   value_for_below_diagonal):
+        """
+        Fucntion to creating the tridiagonal matrix.
+        
+        Parameters
+        ----------
+        size_of_a_matrix
+        value_for_diagonal
+        value_for_above_diagonal
+        value_for_below_diagonal
+
+        Returns
+        -------
+
+        """
         if size_of_a_matrix <= 3:
             # since size should be greater than 3
             print("Please enter the size that is greater than 3")
